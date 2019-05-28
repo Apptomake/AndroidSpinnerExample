@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    private Spinner spinner1, spinner2;
+    private Spinner spinner1, spinner2, spinner3;
     private Button btnSubmit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setSupportActionBar(toolbar);
 
         addItemsOnSpinner2();
+        addItemsOnSpinner3();
         addListenerOnButton();
         addListenerOnSpinnerItemSelection();
     }
@@ -46,6 +47,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         spinner2.setAdapter(dataAdapter);
     }
 
+    public void addItemsOnSpinner3() {
+
+        spinner3 = (Spinner) findViewById(R.id.spinner3);
+        List<String> list = new ArrayList<String>();
+        list.add("list 10");
+        list.add("list 20");
+        list.add("list 30");
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, list);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner3.setAdapter(dataAdapter);
+    }
+
     public void addListenerOnSpinnerItemSelection() {
         spinner1 = (Spinner) findViewById(R.id.spinner1);
         spinner1.setOnItemSelectedListener(new CustomOnItemSelectedListener());
@@ -56,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         spinner1 = (Spinner) findViewById(R.id.spinner1);
         spinner2 = (Spinner) findViewById(R.id.spinner2);
+        spinner3 = (Spinner) findViewById(R.id.spinner3);
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +81,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 Toast.makeText(MainActivity.this,
                         "OnClickListener : " +
                                 "\nSpinner 1 : "+ String.valueOf(spinner1.getSelectedItem()) +
-                                "\nSpinner 2 : "+ String.valueOf(spinner2.getSelectedItem()),
+                                "\nSpinner 2 : "+ String.valueOf(spinner2.getSelectedItem()) +
+                                "\nSpinner 3 : "+ String.valueOf(spinner3.getSelectedItem()),
                         Toast.LENGTH_SHORT).show();
             }
 
